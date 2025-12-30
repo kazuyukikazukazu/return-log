@@ -82,13 +82,22 @@ export default function Home() {
   return (
     <main style={{ padding: 40, fontFamily: "sans-serif" }}>
       <h1>今日は、いくら自分を裏切りましたか？</h1>
-      <p style={{ marginTop: 8, fontSize: 14, opacity: 0.85, maxWidth: 640, lineHeight: 1.7 }}>
-      このアプリは「変わりたい」と思った夜に、
-      <br />
-      自分を責めずに事実だけを残すためのものです。
-      </p>
+      <p style={{ marginBottom: 24, fontSize: 18 }}>
+  自己嫌悪の夜に、<br />
+  自分を責めずに「戻る」ために開くログ。
+</p>
 
-      <p style={{ marginTop: 12 }}>夜、正直にボタンを押してください。</p>
+<p style={{ marginBottom: 16, color: "#555" }}>
+  ここに来た時点で、あなたはもう動いている。<br />
+  このアプリは、反省や改善のためのものじゃない。
+</p>
+
+<p style={{ marginBottom: 24 }}>
+  朝は、約束を小さく書く。<br />
+  夜は、事実だけを押す。<br />
+  それだけでいい。
+</p>
+
 
       <p style={{ marginTop: 24, fontSize: 18 }}>
         今日（{key}）のCommit Debt：<b>{todayDebt}</b>円
