@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { copy } from "./content/copy";
+
 
 const STORAGE_KEY = "commit-debt-by-date";
 const RESULT_KEY = "commit-result-by-date";
@@ -49,6 +51,8 @@ function readResultMap(): Record<string, "success" | "fail"> {
 }
 
 export default function Home() {
+  const lang = "ja";
+  const t = copy[lang].home;
   const [map, setMap] = useState<Record<string, number>>({});
   const [resultMap, setResultMap] = useState<Record<string, "success" | "fail">>({});
 
@@ -81,22 +85,9 @@ export default function Home() {
 
   return (
     <main style={{ padding: 40, fontFamily: "sans-serif" }}>
-      <h1>今日は、いくら自分を裏切りましたか？</h1>
-      <p style={{ marginBottom: 24, fontSize: 18 }}>
-  自己嫌悪の夜に、<br />
-  自分を責めずに「戻る」ために開くログ。
-</p>
-
-<p style={{ marginBottom: 16, color: "#555" }}>
-  ここに来た時点で、あなたはもう動いている。<br />
-  このアプリは、反省や改善のためのものじゃない。
-</p>
-
-<p style={{ marginBottom: 24 }}>
-  朝は、約束を小さく書く。<br />
-  夜は、事実だけを押す。<br />
-  それだけでいい。
-</p>
+      <h1>{t.title}</h1>
+      <p style={{ marginTop: 12 }}>{t.subtitle}</p>
+      <p style={{ marginTop: 16, fontSize: 12 }}>{t.note}</p>
 
 
       <p style={{ marginTop: 24, fontSize: 18 }}>
