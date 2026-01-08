@@ -38,7 +38,58 @@ export const copy = {
         lastResult: "最後の結果：",
       },
     },
+  
+    // 国際化の“骨格”だけ先に用意（中身はあとでOK）
+    en: {
+      home: {
+        title: "How many times did you betray yourself today?",
+        subtitle: "At night, just press the honest button.",
+        note: "*No judgment. Just a record.",
+      },
+      review: {
+        hero: [
+          "If you're here on a night you want to change, you're already moving.",
+          "Today's result is not a reason to blame yourself.",
+          "It's a record of becoming someone who can return.",
+          "",
+          "Tomorrow, make your morning promise smaller.",
+          "At night, press only the facts.",
+          "That's enough.",
+        ].join("\n"),
+        intro: [
+          "Open this review only once a month.",
+          "Look at the facts (numbers), then leave just one sentence.",
+          "No judgment. Not public. For yourself.",
+        ].join("\n"),
+        footer: "Self-hate is not fuel to quit. It's a signal to return.",
+        openButton: "Open this month's review",
+      },
+      night: {
+        title: "Night check",
+        promiseLabel: "Today's promise ({date}):",
+        question: "Did you keep your promise today?",
+        success: "✅ Kept it",
+        fail: "❌ Didn't keep it (+{penalty} yen)",
+        reset: "Reset today",
+        backHome: "← Back to Home",
+        toMorning: "Go to Morning →",
+        noPromise: "No morning promise yet.",
+        writeMorning: "Write morning promise →",
+        todayDebt: "Commit Debt today:",
+        lastResult: "Last result:",
+      },
+    },
   } as const;
   
   export type Lang = keyof typeof copy;
+  
+  // 置換（{date} とか）を安全に行うための共通関数
+  export function formatText(
+    text: string,
+    params: Record<string, string | number> = {}
+  ) {
+    return text.replace(/\{(\w+)\}/g, (_, key) =>
+      params[key] === undefined ? `{${key}}` : String(params[key])
+    );
+  }
   

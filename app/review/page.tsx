@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { copy } from "../content/copy";
 
 const DEBT_KEY = "commit-debt-by-date";
 const RESULT_KEY = "commit-result-by-date";
@@ -30,6 +31,8 @@ function writeJSON(key: string, value: any) {
 type Result = "success" | "fail";
 
 export default function ReviewPage() {
+　const lang = "ja";
+　const t = copy[lang].review;
   const nowMonth = useMemo(() => monthKey(new Date()), []);
   const [mounted, setMounted] = useState(false);
 
@@ -116,14 +119,10 @@ export default function ReviewPage() {
   return (
     <main style={{ padding: 40, fontFamily: "sans-serif", maxWidth: 900 }}>
       {/* --- 上の“思想メッセージ”は常に表示でOK --- */}
-      <div style={{ border: "1px solid #e5e5e5", padding: 16, lineHeight: 1.9 }}>
-        <div>変わりたい夜に、ここへ来た時点であなたはもう動いている。</div>
-        <div>今日の結果は、反省材料じゃない。</div>
-        <div>“戻れる自分”を作った記録です。</div>
-        <div style={{ marginTop: 10 }}>明日は、朝の約束を小さくする。</div>
-        <div>夜は、事実だけ押す。</div>
-        <div>それだけでいい。</div>
-      </div>
+      <div style={{ border: "1px solid #e5e5e5", padding: 16, lineHeight: 1.9, whiteSpace: "pre-line" }}>
+ 　　 {t.hero}
+　　　</div>
+
 
       <h1 style={{ marginTop: 28 }}>月末レビュー</h1>
       <p style={{ marginTop: 8 }}>今月（{nowMonth}）の記録を、静かに確認する。</p>
@@ -131,13 +130,10 @@ export default function ReviewPage() {
       {/* ===== B案：開く前は“説明＋ボタンのみ” ===== */}
       {!isOpened ? (
         <div style={{ marginTop: 18 }}>
-          <div style={{ fontSize: 14, lineHeight: 1.8, color: "#333" }}>
-            レビューは、月に一度だけ開く。
-            <br />
-            開いたら、事実（数字）と、最後に“一文”だけ残す。
-            <br />
-            評価しない。公開しない。自分のために残す。
-          </div>
+          <div style={{ fontSize: 14, lineHeight: 1.8, color: "#333", whiteSpace: "pre-line" }}>
+ 　　　　　 {t.intro}
+　　　　　</div>
+
 
           <button
             onClick={openReview}
@@ -149,7 +145,7 @@ export default function ReviewPage() {
               cursor: "pointer",
             }}
           >
-            今月のレビューを開く
+           {t.openButton}
           </button>
 
           <div style={{ marginTop: 20, display: "flex", gap: 14 }}>
@@ -241,9 +237,7 @@ export default function ReviewPage() {
             </div>
           </div>
 
-          <p style={{ marginTop: 18, color: "#333" }}>
-            自己嫌悪は「やめる」の燃料じゃない。「戻る」の合図だ。
-          </p>
+          <p style={{ marginTop: 18, color: "#333" }}>{t.footer}</p>
 
           <div style={{ marginTop: 12, display: "flex", gap: 14 }}>
             <Link href="/" style={{ textDecoration: "underline" }}>
